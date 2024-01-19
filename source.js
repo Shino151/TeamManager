@@ -769,9 +769,10 @@ function mixplayers()
 	document.getElementById("t1n4").value = players[3];
 	document.getElementById("t1n5").value = players[4];
 	document.getElementById("t2n1").value = players[5];
-	document.getElementById("t2n3").value = players[6];
-	document.getElementById("t2n4").value = players[7];
-	document.getElementById("t2n5").value = players[8];
+	document.getElementById("t2n2").value = players[6];
+	document.getElementById("t2n3").value = players[7];
+	document.getElementById("t2n4").value = players[8];
+	document.getElementById("t2n5").value = players[9];
 	
 	updmml();
 }
