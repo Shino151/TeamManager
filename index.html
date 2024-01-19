@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Gerenciador de times</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel='stylesheet' href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.17/Tone.js"></script>
+</head>
+<body>
+	<header class="header">
+		<div class="header-container">
+			<div id="tmh" class="disabled header-section-container">
+				<i class="bx bxs-user header-icon"></i>
+				<span class="header-text">Gerenciar times</span>
+			</div>
+
+			<div id="homeh" class="header-section-container">
+				<i class="bx bxs-home header-icon"></i>
+				<span class="header-text">Menu principal</span>
+			</div>
+
+			<div id="settingsh" class="disabled header-section-container">
+				<i class="bx bxs-cog header-icon"></i>
+				<span class="header-text">Configurações</span>
+			</div>
+		</div>
+	</header>
+
+	<section class="mainsection">
+		<div class="transition"></div>
+
+		<div class="transition"></div>
+
+		<div id="tmcontent" class="disabled">
+			<div class="tmbtn-container" onclick="mixplayers()">
+				<div class="tmbtn" id="mix">
+					<span>Embaralhar</span>
+					<i class='bx bx-football'></i>
+					<span>Jogadores</span>
+				</div>
+			</div>
+
+			<div class="tmbtn-container" onclick="backupplayers()">
+				<div class="tmbtn" id="backup">
+					<span>Restaurar</span>
+					<i class='bx bx-football'></i>
+					<span>Jogadores</span>
+				</div>
+			</div>
+
+			<div class="teams">
+				<div class="teams-container">
+					<input type="text" id="t1n1" placeholder="Time 1 nome 1" class="teams-inputs">
+					<input type="text" id="t1n2" placeholder="Time 1 nome 2" class="teams-inputs">
+					<input type="text" id="t1n3" placeholder="Time 1 nome 3" class="teams-inputs">
+					<input type="text" id="t1n4" placeholder="Time 1 nome 4" class="teams-inputs">
+					<input type="text" id="t1n5" placeholder="Time 1 nome 5" class="teams-inputs">
+				</div>
+
+				<div class="teams-container">
+					<input type="text" id="t2n1" placeholder="Time 2 nome 1" class="teams-inputs">
+					<input type="text" id="t2n2" placeholder="Time 2 nome 2" class="teams-inputs">
+					<input type="text" id="t2n3" placeholder="Time 2 nome 3" class="teams-inputs">
+					<input type="text" id="t2n4" placeholder="Time 2 nome 4" class="teams-inputs">
+					<input type="text" id="t2n5" placeholder="Time 2 nome 5" class="teams-inputs">
+				</div>
+
+				<div class="teams-container">
+					<input type="text" id="tpn1" placeholder="Time pro nome 1" class="teams-inputs">
+					<input type="text" id="tpn2" placeholder="Time pro nome 2" class="teams-inputs">
+					<input type="text" id="tpn3" placeholder="Time pro nome 3" class="teams-inputs">
+					<input type="text" id="tpn4" placeholder="Time pro nome 4" class="teams-inputs">
+					<input type="text" id="tpn5" placeholder="Time pro nome 5" class="teams-inputs">
+				</div>
+
+				<div class="teams-container">
+					<input type="text" id="trn1" placeholder="Time re nome 1" class="teams-inputs">
+					<input type="text" id="trn2" placeholder="Time re nome 2" class="teams-inputs">
+					<input type="text" id="trn3" placeholder="Time re nome 3" class="teams-inputs">
+					<input type="text" id="trn4" placeholder="Time re nome 4" class="teams-inputs">
+					<input type="text" id="trn5" placeholder="Time re nome 5" class="teams-inputs">
+				</div>
+			</div>
+
+			<div class="tmbtn-container">
+				<div class="tmbtn-clear" onclick="clearplayers()">
+					<span>Limpar jogadores</span>
+				</div>
+			</div>
+		</div>
+
+		<div id="homecontent">
+
+			<div class="wtwbuttons" onclick="t1wins()">
+				<div class="wtwbuttons-text">
+					Time 1
+					<i class="bx bxs-trophy"></i>
+					Venceu
+				</div>
+			</div>
+			<div class="wtwbuttons" onclick="stalemate()">
+				<div class="wtwbuttons-text">
+					<i class="bx bxs-ghost"></i>
+					Empate
+				</div>
+			</div>
+			<div class="wtwbuttons" onclick="t2wins()">
+				<div class="wtwbuttons-text">
+					Time 2
+					<i class="bx bxs-trophy"></i>
+					Venceu
+				</div>
+			</div>
+
+			<div class="inputs1-container">
+				<input id="t1n1l" type="text" class="inputs">
+				<input id="t1n2l" type="text" class="inputs">
+				<input id="t1n3l" type="text" class="inputs">
+				<input id="t1n4l" type="text" class="inputs">
+				<input id="t1n5l" type="text" class="inputs">
+			</div>
+
+			<i class="x bx bx-x"></i>
+
+			<div class="inputs2-container">
+				<input id="t2n1l" type="text" class="inputs">
+				<input id="t2n2l" type="text" class="inputs">
+				<input id="t2n3l" type="text" class="inputs">
+				<input id="t2n4l" type="text" class="inputs">
+				<input id="t2n5l" type="text" class="inputs">
+			</div>
+
+			<div class="time-control-container">
+				<i id="clock" class="bx bx-alarm-exclamation time-control-icon "></i>
+				<span id="timer" class="time-control-text">00:00</span>
+			</div>
+
+			<div class="time-control-buttons-container">
+				<button id="playorpausebtn" class="bx bx-play time-control-buttons" onclick="playorpause()"></button>
+				<button id="stopbtn" class="bx bx-stop time-control-buttons" onclick="stop()"></button>
+			</div>
+		</div>
+
+		<div id="settingscontent" class="disabled">
+			<div class="settings-container">
+				<i class="settings-icon bx bx-alarm"></i>
+				<span class="settings-text">Defina um tempo máximo de partida</span>
+
+				<div class="settings-container2">
+					<button class="settings-btn bx bx-minus" onclick="minusmt()"></button>
+					<span id="maxmatchtime" class="settings-text">0</span>
+					<button class="settings-btn bx bx-plus" onclick="plusmt()"></button>
+				</div>
+				
+			</div>
+
+			<div class="teamss">
+				<div class="teams-containers">
+					<div class="inputnbtn-container">
+						<input type="text" placeholder="Insira um nome" class="teams-inputss">
+						<button id="paidbtn1" class="bx bx-square-rounded paid-buttons" onclick=paid(this)></button>
+					</div>
+					<div class="inputnbtn-container">
+						<input type="text" placeholder="Insira um nome" class="teams-inputss">
+						<button id="paidbtn2" class="bx bx-square-rounded paid-buttons" onclick=paid(this)></button>
+					</div>
+					<div class="inputnbtn-container">
+						<input type="text" placeholder="Insira um nome" class="teams-inputss">
+						<button id="paidbtn3" class="bx bx-square-rounded paid-buttons" onclick=paid(this)></button>
+					</div>
+					<div class="inputnbtn-container">
+						<input type="text" placeholder="Insira um nome" class="teams-inputss">
+						<button id="paidbtn4" class="bx bx-square-rounded paid-buttons" onclick=paid(this)></button>
+					</div>
+					<div class="inputnbtn-container">
+						<input type="text" placeholder="Insira um nome" class="teams-inputss">
+						<button id="paidbtn5" class="bx bx-square-rounded paid-buttons" onclick=paid(this)></button>
+					</div>
+				</div>
+
+				<div class="teams-containers">
+					<div class="inputnbtn-container">
+						<input type="text" placeholder="Insira um nome" class="teams-inputss">
+						<button id="paidbtn6" class="bx bx-square-rounded paid-buttons" onclick=paid(this)></button>
+					</div>
+					<div class="inputnbtn-container">
+						<input type="text" placeholder="Insira um nome" class="teams-inputss">
+						<button id="paidbtn7" class="bx bx-square-rounded paid-buttons" onclick=paid(this)></button>
+					</div>
+					<div class="inputnbtn-container">
+						<input type="text" placeholder="Insira um nome" class="teams-inputss">
+						<button id="paidbtn8" class="bx bx-square-rounded paid-buttons" onclick=paid(this)></button>
+					</div>
+					<div class="inputnbtn-container">
+						<input type="text" placeholder="Insira um nome" class="teams-inputss">
+						<button id="paidbtn9" class="bx bx-square-rounded paid-buttons" onclick=paid(this)></button>
+					</div>
+					<div class="inputnbtn-container">
+						<input type="text" placeholder="Insira um nome" class="teams-inputss">
+						<button id="paidbtn10" class="bx bx-square-rounded paid-buttons" onclick=paid(this)></button>
+					</div>
+				</div>
+
+				<div class="teams-containers">
+					<div class="inputnbtn-container">
+						<input type="text" placeholder="Insira um nome" class="teams-inputss">
+						<button id="paidbtn11" class="bx bx-square-rounded paid-buttons" onclick=paid(this)></button>
+					</div>
+					<div class="inputnbtn-container">
+						<input type="text" placeholder="Insira um nome" class="teams-inputss">
+						<button id="paidbtn12" class="bx bx-square-rounded paid-buttons" onclick=paid(this)></button>
+					</div>
+					<div class="inputnbtn-container">
+						<input type="text" placeholder="Insira um nome" class="teams-inputss">
+						<button id="paidbtn13" class="bx bx-square-rounded paid-buttons" onclick=paid(this)></button>
+					</div>
+					<div class="inputnbtn-container">
+						<input type="text" placeholder="Insira um nome" class="teams-inputss">
+						<button id="paidbtn14" class="bx bx-square-rounded paid-buttons" onclick=paid(this)></button>
+					</div>
+					<div class="inputnbtn-container">
+						<input type="text" placeholder="Insira um nome" class="teams-inputss">
+						<button id="paidbtn15" class="bx bx-square-rounded paid-buttons" onclick=paid(this)></button>
+					</div>
+				</div>
+
+				<div class="teams-containers">
+					<div class="inputnbtn-container">
+						<input type="text" placeholder="Insira um nome" class="teams-inputss">
+						<button id="paidbtn16" class="bx bx-square-rounded paid-buttons" onclick=paid(this)></button>
+					</div>
+					<div class="inputnbtn-container">
+						<input type="text" placeholder="Insira um nome" class="teams-inputss">
+						<button id="paidbtn17" class="bx bx-square-rounded paid-buttons" onclick=paid(this)></button>
+					</div>
+					<div class="inputnbtn-container">
+						<input type="text" placeholder="Insira um nome" class="teams-inputss">
+						<button id="paidbtn18" class="bx bx-square-rounded paid-buttons" onclick=paid(this)></button>
+					</div>
+					<div class="inputnbtn-container">
+						<input type="text" placeholder="Insira um nome" class="teams-inputss">
+						<button id="paidbtn19" class="bx bx-square-rounded paid-buttons" onclick=paid(this)></button>
+					</div>
+					<div class="inputnbtn-container">
+						<input type="text" placeholder="Insira um nome" class="teams-inputss">
+						<button id="paidbtn20" class="bx bx-square-rounded paid-buttons" onclick=paid(this)></button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<nav class="nav">
+		<div class="nav-container">
+			<div id="tm" class="nav-section-container" onclick="tmactive()">
+				<i id="tmicon" class="bx bx-user nav-icon"></i>
+				<span class="nav-text">Times</span>
+			</div>
+
+			<div id="home" class="nav-section-container active" onclick="homeactive()">
+				<i id="homeicon" class="bx bxs-home nav-icon"></i>
+				<span class="nav-text">Principal</span>
+			</div>
+
+			<div id="settings" class="nav-section-container" onclick="settingsactive()">
+				<i id="settingsicon" class="bx bx-cog nav-icon"></i>
+				<span class="nav-text">Config.</span>
+			</div>
+		</div>
+	</nav>
+
+	<script src="source.js"></script>
+</body>
+</html>
+
